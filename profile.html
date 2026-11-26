@@ -232,5 +232,24 @@
 <script src="jquery.min.js"></script>
 <script src="bootstrap.bundle.min.js"></script>
 <script src="adminlte.min.js"></script>
+<script>
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-widget="pushmenu"]');
+    if (!btn) return;
+    e.preventDefault();
+    if (window.$ && $.fn && $.fn.PushMenu) {
+      $(btn).PushMenu('toggle');
+    } else {
+      var body = document.body;
+      if (window.innerWidth < 992) {
+        body.classList.toggle('sidebar-open');
+        body.classList.remove('sidebar-collapse');
+      } else {
+        body.classList.toggle('sidebar-collapse');
+        body.classList.remove('sidebar-open');
+      }
+    }
+  });
+</script>
 </body>
 </html>

@@ -12,6 +12,18 @@
   <link rel="stylesheet" href="all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="adminlte.min.css">
+
+  <style>
+    @media (max-width: 991.98px) {
+      .main-sidebar {
+        margin-left: -250px;
+        transition: margin-left 0.25s ease;
+      }
+      body.sidebar-mobile-open .main-sidebar {
+        margin-left: 0 !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -27,7 +39,7 @@
         <a href="index.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="List.html" class="nav-link">List</a>
+        <a href="list.html" class="nav-link">List</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="profile.html" class="nav-link">Profile</a>
@@ -84,7 +96,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="List.html" class="nav-link">
+            <a href="list.html" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List</p>
             </a>
@@ -256,17 +268,28 @@
 
 <script src="jquery.min.js"></script>
 <script src="bootstrap.bundle.min.js"></script>
-<script src="bs-custom-file-input.min.js"></script>
 <script src="adminlte.min.js"></script>
 <script>
-$(function () {
-  if (typeof bsCustomFileInput !== 'undefined') {
-    bsCustomFileInput.init();
-  }
-});
+  document.addEventListener('change', function (e) {
+    if (e.target && e.target.classList.contains('custom-file-input')) {
+      var label = e.target.nextElementSibling;
+      if (label && e.target.files && e.target.files.length > 0) {
+        label.textContent = e.target.files[0].name;
+      }
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-widget="pushmenu"]');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (window.innerWidth < 992) {
+      document.body.classList.toggle('sidebar-mobile-open');
+    } else {
+      document.body.classList.toggle('sidebar-collapse');
+    }
+  }, true);
 </script>
-<script src="jquery.min.js"></script>
-<script src="bootstrap.bundle.min.js"></script>
-<script src="adminlte.min.js"></script>
 </body>
 </html>
