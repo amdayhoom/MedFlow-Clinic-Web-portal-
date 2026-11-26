@@ -237,19 +237,15 @@
     var btn = e.target.closest('[data-widget="pushmenu"]');
     if (!btn) return;
     e.preventDefault();
-    if (window.$ && $.fn && $.fn.PushMenu) {
-      $(btn).PushMenu('toggle');
+    e.stopImmediatePropagation();
+    if (window.innerWidth < 992) {
+      document.body.classList.toggle('sidebar-mobile-open');
+      document.body.classList.remove('sidebar-collapse');
     } else {
-      var body = document.body;
-      if (window.innerWidth < 992) {
-        body.classList.toggle('sidebar-open');
-        body.classList.remove('sidebar-collapse');
-      } else {
-        body.classList.toggle('sidebar-collapse');
-        body.classList.remove('sidebar-open');
-      }
+      document.body.classList.toggle('sidebar-collapse');
+      document.body.classList.remove('sidebar-mobile-open');
     }
-  });
+  }, true);
 </script>
 </body>
 </html>
