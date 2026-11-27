@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedFlow Clinic Register</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="all.min.css">
+  <link rel="stylesheet" href="adminlte.min.css">
+</head>
+
+<body>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item"><a class="nav-link" data-widget="fullscreen" href="#" role="button"><i class="fas fa-expand-arrows-alt"></i></a></li>
+  </ul>
+</nav>
+
+<section class="content pt-5">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card card-outline card-primary">
+          <div class="card-header text-center">
+            <a href="login.html" class="h1"><b>MedFlow</b> Clinic</a>
+          </div>
+          <div class="card-body">
+            <p class="login-box-msg">Create a new account</p>
+            <div id="msg" class="mb-2"></div>
+
+            <form id="registerForm">
+              <div class="input-group mb-3">
+                <input type="text" id="name" class="form-control" placeholder="Full name" required>
+                <div class="input-group-append">
+                  <div class="input-group-text"><span class="fas fa-user"></span></div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="email" id="email" class="form-control" placeholder="Email" required>
+                <div class="input-group-append">
+                  <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="password" id="password" class="form-control" placeholder="Password (min 6 characters)" required>
+                <div class="input-group-append">
+                  <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input type="password" id="confirm" class="form-control" placeholder="Confirm password" required>
+                <div class="input-group-append">
+                  <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+
+            <p class="mb-0 mt-3">
+              <a href="login.html" class="text-center">I already have an account</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="jquery.min.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
+<script src="adminlte.min.js"></script>
+<script>
+  $('#registerForm').on('submit', function (e) {
+    e.preventDefault();
+    $('#msg').html('');
+
+    if ($('#password').val() !== $('#confirm').val()) {
+      $('#msg').html('<div class="alert alert-danger">Passwords do not match</div>');
+      return;
+    }
+
+    $.ajax({
+      url: '/api/register',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        name: $('#name').val(),
+        email: $('#email').val(),
+        password: $('#password').val()
+      }),
+      success: function () {
+        $('#msg').html('<div class="alert alert-success">Account created! Redirecting to login...</div>');
+        setTimeout(function () { window.location.href = 'login.html'; }, 1500);
+      },
+      error: function (xhr) {
+        var m = xhr.responseJSON ? xhr.responseJSON.error : 'Could not reach the server';
+        $('#msg').html('<div class="alert alert-danger">' + m + '</div>');
+      }
+    });
+  });
+</script>
+</body>
+</html>
