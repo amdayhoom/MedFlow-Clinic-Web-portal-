@@ -6,7 +6,7 @@ The **MedFlow Clinic Web Portal** is a **front-end only** web application design
 This project focuses entirely on the User Interface (UI), User Experience (UX), and client-side logic. **Note:** There is currently no backend server or database connected; all data, lists, and dashboard statistics are static or mocked for demonstration purposes.
 
 ## ✨ Key Features
-* **Authentication UI:** A clean login interface (`login.html`) designed to simulate user access.
+* **Authentication Interfaces:** Clean Login and Registration screens (`login.html`, `register.html`) designed to simulate user onboarding and access.
 * **Interactive Dashboard:** A dynamic dashboard (`dashboard3.js`, `chart.min.js`) featuring interactive, statically populated charts for visualizing clinic metrics.
 * **Management Interfaces:**
   * `index.html`: The main landing page.
@@ -29,7 +29,8 @@ This project is built entirely using client-side web technologies:
 ## 📂 File Structure
 Here is a quick guide to the main files in this repository:
 * `index.html` - Main entry point / Homepage.
-* `login.html` - User authentication interface.
+* `login.html` - User authentication (Login) interface.
+* `register.html` - User onboarding (Registration) interface.
 * `dashboard3.js` - JavaScript file powering the interactive dashboard and charts.
 * `add.html` / `list.html` / `profile.html` - Core UI pages for data management.
 * `chart.min.js` - Chart.js library file.
