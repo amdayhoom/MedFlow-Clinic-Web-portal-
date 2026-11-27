@@ -41,4 +41,4 @@ Here is a quick guide to the main files in this repository:
 ## 🚀 How to Run Locally
 Since this is a static front-end project, you can run it easily without a backend server:
 1. Clone the repository:
-[[ https://github.com/amdayhoom/MedFlow-Clinic-Web-portal-/edit/main/README.md](https://github.com/amdayhoom/MedFlow-Clinic-Web-portal-)](https://github.com/amdayhoom/MedFlow-Clinic-Web-portal-)
+[[ https://github.com/amdayhoom/MedFlow-Clinic-Web-portal-/edit/main/README.md](https://github.com/amdayhoom/MedFlow-Clinic-Web-portal-)]
